@@ -13,10 +13,10 @@ USEEXAMPLECONFIG="no"
 
 # Get the options
 while getopts "hnr:s:o:u:" option; do
-   case $option in
+  case $option in
       n) # Noninteractive Install
-         INTERACTIVE="no"
-         ;;
+        INTERACTIVE="no"
+        ;;
       r) # Reboot
         REBOOTCOMPTUER=$OPTARG
         ;;
@@ -47,7 +47,7 @@ while getopts "hnr:s:o:u:" option; do
         echo "Error: Invalid option"
         exit
         ;;
-   esac
+  esac
 done
 
 show_version() {
