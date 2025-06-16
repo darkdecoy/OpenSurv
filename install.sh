@@ -100,25 +100,25 @@ BACKUPCONFDIR=/tmp/backup_opensurv_config_$(date +%Y%m%d_%s)
 
 if [ x"$INTERACTIVE" == x"yes" ]; then
 if [ -d "$DESTPATH/${CONFDIR}" ];then
-   echo
-   echo "Existing config dir will be backed up to "${BACKUPCONFDIR}""
-   cp -arv "$DESTPATH/${CONFDIR}" "${BACKUPCONFDIR}"
+  echo
+  echo "Existing config dir will be backed up to "${BACKUPCONFDIR}""
+  cp -arv "$DESTPATH/${CONFDIR}" "${BACKUPCONFDIR}"
 
-   echo
-   echo "Do you want to overwrite your current config files with the example config files?"
-   echo "Type yes/no"
-   read USEEXAMPLECONFIG
+  echo
+  echo "Do you want to overwrite your current config files with the example config files?"
+  echo "Type yes/no"
+  read USEEXAMPLECONFIG
 else
-   USEEXAMPLECONFIG="yes"
+  USEEXAMPLECONFIG="yes"
 fi
 
 if [ -d /home/opensurv/lib/images ];then
-   echo
-   echo "Do you want to overwrite you current images directory (/home/opensurv/lib/images) with the images from the installer?"
-   echo "Type yes/no"
-   read OVERWRITESIMAGES
+  echo
+  echo "Do you want to overwrite you current images directory (/home/opensurv/lib/images) with the images from the installer?"
+  echo "Type yes/no"
+  read OVERWRITESIMAGES
 else
-   OVERWRITESIMAGES="yes"
+  OVERWRITESIMAGES="yes"
 fi
 
 echo
@@ -156,7 +156,6 @@ if [ ! -f /home/opensurv/firstinstall_DONE ];then
     echo "For reboot press <Enter>"
     read
     reboot
-  fi
   elif [ x"$REBOOTCOMPUTER" == x"yes" ]; then
     reboot
   fi
