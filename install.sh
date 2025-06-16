@@ -138,8 +138,8 @@ fi
 rsync -av "$SOURCEDIR/demo" "$DESTPATH/lib/"
 rsync -av "$SOURCEDIR/core" "$DESTPATH/lib/"
 rsync -av "$SOURCEDIR/surveillance.py" "$DESTPATH/lib/"
-rsync -av opensurv "$DESTPATH/bin/"
-rsync -av opensurv.desktop "/usr/share/xsessions/"
+rsync -av "$BASEPATH/opensurv" "$DESTPATH/bin/"
+rsync -av "$BASEPATH/opensurv.desktop" "/usr/share/xsessions/"
 
 chown -Rc opensurv:opensurv /home/opensurv
 
