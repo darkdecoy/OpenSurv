@@ -79,8 +79,8 @@ echo -n "The following version will be installed:"
 show_version
 echo
 if [ x"$INTERACTIVE" == x"yes" ]; then
-echo "Do you want to continue press <Enter>, <Ctrl-C> to cancel"
-read
+  echo "Do you want to continue press <Enter>, <Ctrl-C> to cancel"
+  read
 fi
 
 #Install needed packages
@@ -99,32 +99,32 @@ CONFDIR="etc"
 BACKUPCONFDIR=/tmp/backup_opensurv_config_$(date +%Y%m%d_%s)
 
 if [ x"$INTERACTIVE" == x"yes" ]; then
-if [ -d "$DESTPATH/${CONFDIR}" ];then
-  echo
-  echo "Existing config dir will be backed up to "${BACKUPCONFDIR}""
-  cp -arv "$DESTPATH/${CONFDIR}" "${BACKUPCONFDIR}"
+  if [ -d "$DESTPATH/${CONFDIR}" ];then
+    echo
+    echo "Existing config dir will be backed up to "${BACKUPCONFDIR}""
+    cp -arv "$DESTPATH/${CONFDIR}" "${BACKUPCONFDIR}"
+
+    echo
+    echo "Do you want to overwrite your current config files with the example config files?"
+    echo "Type yes/no"
+    read USEEXAMPLECONFIG
+  else
+    USEEXAMPLECONFIG="yes"
+  fi
+
+  if [ -d /home/opensurv/lib/images ];then
+    echo
+    echo "Do you want to overwrite you current images directory (/home/opensurv/lib/images) with the images from the installer?"
+    echo "Type yes/no"
+    read OVERWRITESIMAGES
+  else
+    OVERWRITESIMAGES="yes"
+  fi
 
   echo
-  echo "Do you want to overwrite your current config files with the example config files?"
+  echo "Do you want me to (re-)start opensurv after install?"
   echo "Type yes/no"
-  read USEEXAMPLECONFIG
-else
-  USEEXAMPLECONFIG="yes"
-fi
-
-if [ -d /home/opensurv/lib/images ];then
-  echo
-  echo "Do you want to overwrite you current images directory (/home/opensurv/lib/images) with the images from the installer?"
-  echo "Type yes/no"
-  read OVERWRITESIMAGES
-else
-  OVERWRITESIMAGES="yes"
-fi
-
-echo
-echo "Do you want me to (re-)start opensurv after install?"
-echo "Type yes/no"
-read ANSWERSTART
+  read ANSWERSTART
 fi
 
 if [ x"$OVERWRITESIMAGES" == x"yes" ]; then
@@ -134,6 +134,7 @@ if [ x"$USEEXAMPLECONFIG" == x"yes" ]; then
     rsync -av "$SOURCEDIR/etc/" "$DESTPATH/etc/"
     set_default_options_mpv
 fi
+
 rsync -av "$SOURCEDIR/demo" "$DESTPATH/lib/"
 rsync -av "$SOURCEDIR/core" "$DESTPATH/lib/"
 rsync -av "$SOURCEDIR/surveillance.py" "$DESTPATH/lib/"
